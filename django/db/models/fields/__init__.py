@@ -136,7 +136,7 @@ class Field(RegisterLookupMixin):
                  serialize=True, unique_for_date=None, unique_for_month=None,
                  unique_for_year=None, choices=None, help_text='', db_column=None,
                  db_tablespace=None, auto_created=False, validators=(),
-                 error_messages=None):
+                 error_messages=None, permissions=None):
         self.name = name
         self.verbose_name = verbose_name  # May be set by set_attributes_from_name
         self._verbose_name = verbose_name  # Store original for deconstruction
@@ -176,6 +176,8 @@ class Field(RegisterLookupMixin):
         messages.update(error_messages or {})
         self._error_messages = error_messages  # Store for deconstruction later
         self.error_messages = messages
+
+        self.permissions = permissions
 
     def __str__(self):
         """
